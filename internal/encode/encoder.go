@@ -1,6 +1,6 @@
 package encode
 
-import w "github.com/ffo32167/weather/internal/types"
+import w "weather/internal/types"
 
 // ChooseEncoder выбирает формат ответа
 func ChooseEncoder(format string) (e w.Encoder) {

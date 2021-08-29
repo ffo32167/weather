@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"testing"
 
-	w "github.com/ffo32167/weather/internal/types"
+	w "weather/internal/types"
 )
 
 func Test_csv_Encode(t *testing.T) {

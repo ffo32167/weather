@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	c "github.com/ffo32167/weather/weatherParser/configs"
+	c "weather/configs"
 )
 
 func TestChooseSiteParser(t *testing.T) {

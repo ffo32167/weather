@@ -5,8 +5,8 @@ import (
 	"reflect"
 	"testing"
 
-	c "github.com/ffo32167/weather/weatherParser/configs"
-	w "github.com/ffo32167/weather/weatherParser/internal/types"
+	c "weather/configs"
+	w "weather/internal/types"
 )
 
 func Test_yandex_CreateDataPath(t *testing.T) {

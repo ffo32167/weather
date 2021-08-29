@@ -1,10 +1,11 @@
 package main
 
 import (
-	c "github.com/ffo32167/weather/configs"
-	l "github.com/ffo32167/weather/internal/logger"
-	g "github.com/ffo32167/weather/internal/rpc"
-	ch "github.com/ffo32167/weather/internal/storage"
+	c "weather/configs"
+	l "weather/internal/logger"
+	g "weather/internal/rpc"
+	ch "weather/internal/storage"
+
 	"github.com/sirupsen/logrus"
 )
 

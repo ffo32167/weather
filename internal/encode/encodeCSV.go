@@ -4,7 +4,8 @@ import (
 	"bytes"
 	enccsv "encoding/csv"
 
-	w "github.com/ffo32167/weather/internal/types"
+	w "weather/internal/types"
+
 	"github.com/sirupsen/logrus"
 )
 
