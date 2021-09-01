@@ -3,6 +3,7 @@ package config
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -42,7 +43,7 @@ func NewConfig() (cfg *Config, err error) {
 	}
 	file, err := os.Open(filepath.Join(cfg.AppPath, `config.json`))
 	if err != nil {
-		return nil, errors.New("can't open config.json")
+		return nil, fmt.Errorf("can't open config.json: %w", err)
 	}
 	defer file.Close()
 	buff, err := ioutil.ReadAll(file)
