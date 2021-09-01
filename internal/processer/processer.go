@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"time"
 
-	c "github.com/ffo32167/weather/configs"
+	c "github.com/ffo32167/weather/cmd/weather/configs"
 	e "github.com/ffo32167/weather/internal/encode"
 	s "github.com/ffo32167/weather/internal/pageparse"
 	ch "github.com/ffo32167/weather/internal/storage"

@@ -5,7 +5,7 @@ import (
 	"net"
 
 	pb "github.com/ffo32167/weather/api"
-	c "github.com/ffo32167/weather/configs"
+	c "github.com/ffo32167/weather/cmd/weather/configs"
 	p "github.com/ffo32167/weather/internal/processer"
 	ch "github.com/ffo32167/weather/internal/storage"
 	w "github.com/ffo32167/weather/internal/types"
