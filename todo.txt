@@ -2,3 +2,5 @@
 - перенести тип Config в cmd/weather/config.go
 - обрабатывать ошибки на defer
 - добавить динамический подсчет года в worldweather.Source
+- избавиться от пакета pageparse, переписав получение данных о погоде по дням на источники данных (worldweather, yandex)
+    и начать их применять в processor
