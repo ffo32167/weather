@@ -3,7 +3,7 @@ package pageparse
 import (
 	"io"
 
-	c "github.com/ffo32167/weather/configs"
+	c "github.com/ffo32167/weather/cmd/weather/configs"
 	w "github.com/ffo32167/weather/internal/types"
 
 	"github.com/PuerkitoBio/goquery"
