@@ -9,3 +9,7 @@ type DayWeather struct {
 	TempNight string
 	Condition string
 }
+
+type Source interface {
+	Get(city string, month string) ([]DayWeather, error)
+}

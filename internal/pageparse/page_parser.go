@@ -21,5 +21,4 @@ func ChooseSiteParser(site string, config *tp.Config) SiteParser {
 	default:
 		return yandex{address: config.YandexWeatherAddress}
 	}
-
 }
