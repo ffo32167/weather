@@ -1,4 +1,4 @@
-module weather
+module github.com/ffo32167/weather
 
 go 1.17
 
