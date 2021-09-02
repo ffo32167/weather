@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	l "github.com/ffo32167/weather/internal/logger"
@@ -20,7 +21,7 @@ func main() {
 	configPath := os.Getenv("CONFIG_PATH")
 	cfg, err := newConfig(configType, configPath)
 	if err != nil {
-		logrus.Fatal(err)
+		logrus.Fatal(fmt.Errorf("error while working with config: %w", err))
 	}
 
 	// настроить логер

@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -27,7 +26,7 @@ func newConfigJSON(path string) (cfg *tp.Config, err error) {
 	cfg = &tp.Config{}
 	cfg.AppPath = path
 	if cfg.AppPath == "" {
-		return nil, errors.New("can't get application path")
+		return nil, fmt.Errorf("can't get application path: %w", err)
 	}
 	file, err := os.Open(filepath.Join(cfg.AppPath, `config.json`))
 	if err != nil {
@@ -36,11 +35,11 @@ func newConfigJSON(path string) (cfg *tp.Config, err error) {
 	defer file.Close()
 	buff, err := ioutil.ReadAll(file)
 	if err != nil {
-		return nil, errors.New("can't read config.json")
+		return nil, fmt.Errorf("can't read config.json: %w", err)
 	}
 	err = json.Unmarshal(buff, &cfg)
 	if err != nil {
-		return nil, errors.New("can't unmarshal config.json")
+		return nil, fmt.Errorf("can't unmarshal config.json: %w", err)
 	}
 	return cfg, nil
 }
