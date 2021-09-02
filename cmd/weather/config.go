@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -11,14 +12,19 @@ import (
 )
 
 func newConfig(configType, configPath string) (*tp.Config, error) {
-	path, _ := filepath.Abs(filepath.Dir(os.Args[0]))
+	path, err := filepath.Abs(filepath.Dir(os.Args[0]))
+	if err != nil {
+		return nil, fmt.Errorf("can't get path: %w", err)
+	}
+
 	switch {
 	case configType == "JSON" && configPath != "":
 		return newConfigJSON(configPath)
 	case configType == "JSON":
 		return newConfigJSON(path)
 	}
-	return nil, fmt.Errorf("can't choose config source")
+
+	return nil, errors.New("can't choose config source")
 }
 
 // NewConfigJSON загрузить конфигурацию из JSON, настроить логи
