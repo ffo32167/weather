@@ -1,6 +1,7 @@
 package pageparse
 
 import (
+	"github.com/ffo32167/weather/internal"
 	"io"
 
 	tp "github.com/ffo32167/weather/internal/types"
@@ -20,8 +21,8 @@ func (w worldWeather) CreateDataPath(country, city, month, year string) (url str
 	return (w.address + country + "/" + city + "/" + month + "-" + year)
 }
 
-func (worldWeather) SiteParse(source io.Reader, city string, month string, config tp.Config) (data []tp.DayWeather) {
-	var day tp.DayWeather
+func (worldWeather) SiteParse(source io.Reader, city string, month string, config tp.Config) (data []internal.DayWeather) {
+	var day internal.DayWeather
 	doc, err := goquery.NewDocumentFromReader(source)
 	if err != nil {
 		logrus.Error("can't parse page as HTML")

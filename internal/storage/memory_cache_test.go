@@ -1,47 +1,46 @@
 package cache
 
 import (
+	"github.com/ffo32167/weather/internal"
 	"path/filepath"
 	"reflect"
 	"testing"
-
-	tp "github.com/ffo32167/weather/internal/types"
 )
 
 var (
 	pathMscJan    = `appPath\cache\yandex\russia\moscow_january_2018.json`
-	weatherMscJan = []tp.DayWeather{
-		tp.DayWeather{City: "Moscow", Month: "january", DayNumber: "1", TempDay: "−2°", TempNight: "−6°", Condition: "Облачно и слабый снег"},
-		tp.DayWeather{City: "Moscow", Month: "january", DayNumber: "2", TempDay: "−5°", TempNight: "−6°", Condition: "Облачно"},
-		tp.DayWeather{City: "Moscow", Month: "january", DayNumber: "3", TempDay: "−7°", TempNight: "−9°", Condition: "Облачно и слабый снег"},
-		tp.DayWeather{City: "Moscow", Month: "january", DayNumber: "4", TempDay: "−8°", TempNight: "−9°", Condition: "Облачно и слабый снег"},
-		tp.DayWeather{City: "Moscow", Month: "january", DayNumber: "5", TempDay: "−8°", TempNight: "−11°", Condition: "Облачно"},
-		tp.DayWeather{City: "Moscow", Month: "january", DayNumber: "6", TempDay: "−10°", TempNight: "−11°", Condition: "Облачно"},
-		tp.DayWeather{City: "Moscow", Month: "january", DayNumber: "7", TempDay: "−10°", TempNight: "−11°", Condition: "Облачно"},
-		tp.DayWeather{City: "Moscow", Month: "january", DayNumber: "8", TempDay: "−9°", TempNight: "−9°", Condition: "Облачно"},
-		tp.DayWeather{City: "Moscow", Month: "january", DayNumber: "9", TempDay: "−8°", TempNight: "−9°", Condition: "Облачно и слабый снег"},
-		tp.DayWeather{City: "Moscow", Month: "january", DayNumber: "10", TempDay: "−7°", TempNight: "−8°", Condition: "Облачно и слабый снег"},
-		tp.DayWeather{City: "Moscow", Month: "january", DayNumber: "11", TempDay: "−6°", TempNight: "−7°", Condition: "Облачно и слабый снег"},
-		tp.DayWeather{City: "Moscow", Month: "january", DayNumber: "12", TempDay: "−5°", TempNight: "−5°", Condition: "Облачно и слабый снег"},
-		tp.DayWeather{City: "Moscow", Month: "january", DayNumber: "13", TempDay: "−3°", TempNight: "−4°", Condition: "Облачно и слабый снег"},
-		tp.DayWeather{City: "Moscow", Month: "january", DayNumber: "14", TempDay: "−3°", TempNight: "−5°", Condition: "Облачно"},
-		tp.DayWeather{City: "Moscow", Month: "january", DayNumber: "15", TempDay: "−4°", TempNight: "−6°", Condition: "Облачно и слабый снег"},
-		tp.DayWeather{City: "Moscow", Month: "january", DayNumber: "16", TempDay: "−5°", TempNight: "−7°", Condition: "Облачно и слабый снег"},
-		tp.DayWeather{City: "Moscow", Month: "january", DayNumber: "17", TempDay: "−7°", TempNight: "−9°", Condition: "Облачно"},
-		tp.DayWeather{City: "Moscow", Month: "january", DayNumber: "18", TempDay: "−8°", TempNight: "−10°", Condition: "Облачно и слабый снег"},
-		tp.DayWeather{City: "Moscow", Month: "january", DayNumber: "19", TempDay: "−8°", TempNight: "−10°", Condition: "Облачно"},
-		tp.DayWeather{City: "Moscow", Month: "january", DayNumber: "20", TempDay: "−8°", TempNight: "−10°", Condition: "Ясно"},
-		tp.DayWeather{City: "Moscow", Month: "january", DayNumber: "21", TempDay: "−9°", TempNight: "−11°", Condition: "Облачно"},
-		tp.DayWeather{City: "Moscow", Month: "january", DayNumber: "22", TempDay: "−9°", TempNight: "−9°", Condition: "Облачно и слабый снег"},
-		tp.DayWeather{City: "Moscow", Month: "january", DayNumber: "23", TempDay: "−8°", TempNight: "−9°", Condition: "Облачно"},
-		tp.DayWeather{City: "Moscow", Month: "january", DayNumber: "24", TempDay: "−8°", TempNight: "−10°", Condition: "Облачно"},
-		tp.DayWeather{City: "Moscow", Month: "january", DayNumber: "25", TempDay: "−9°", TempNight: "−12°", Condition: "Облачно"},
-		tp.DayWeather{City: "Moscow", Month: "january", DayNumber: "26", TempDay: "−10°", TempNight: "−11°", Condition: "Облачно и слабый снег"},
-		tp.DayWeather{City: "Moscow", Month: "january", DayNumber: "27", TempDay: "−8°", TempNight: "−9°", Condition: "Облачно"},
-		tp.DayWeather{City: "Moscow", Month: "january", DayNumber: "28", TempDay: "−7°", TempNight: "−9°", Condition: "Ясно"},
-		tp.DayWeather{City: "Moscow", Month: "january", DayNumber: "29", TempDay: "−7°", TempNight: "−9°", Condition: "Облачно и слабый снег"},
-		tp.DayWeather{City: "Moscow", Month: "january", DayNumber: "30", TempDay: "−7°", TempNight: "−8°", Condition: "Облачно"},
-		tp.DayWeather{City: "Moscow", Month: "january", DayNumber: "31", TempDay: "−6°", TempNight: "−8°", Condition: "Облачно и слабый снег"},
+	weatherMscJan = []internal.DayWeather{
+		internal.DayWeather{City: "Moscow", Month: "january", DayNumber: "1", TempDay: "−2°", TempNight: "−6°", Condition: "Облачно и слабый снег"},
+		internal.DayWeather{City: "Moscow", Month: "january", DayNumber: "2", TempDay: "−5°", TempNight: "−6°", Condition: "Облачно"},
+		internal.DayWeather{City: "Moscow", Month: "january", DayNumber: "3", TempDay: "−7°", TempNight: "−9°", Condition: "Облачно и слабый снег"},
+		internal.DayWeather{City: "Moscow", Month: "january", DayNumber: "4", TempDay: "−8°", TempNight: "−9°", Condition: "Облачно и слабый снег"},
+		internal.DayWeather{City: "Moscow", Month: "january", DayNumber: "5", TempDay: "−8°", TempNight: "−11°", Condition: "Облачно"},
+		internal.DayWeather{City: "Moscow", Month: "january", DayNumber: "6", TempDay: "−10°", TempNight: "−11°", Condition: "Облачно"},
+		internal.DayWeather{City: "Moscow", Month: "january", DayNumber: "7", TempDay: "−10°", TempNight: "−11°", Condition: "Облачно"},
+		internal.DayWeather{City: "Moscow", Month: "january", DayNumber: "8", TempDay: "−9°", TempNight: "−9°", Condition: "Облачно"},
+		internal.DayWeather{City: "Moscow", Month: "january", DayNumber: "9", TempDay: "−8°", TempNight: "−9°", Condition: "Облачно и слабый снег"},
+		internal.DayWeather{City: "Moscow", Month: "january", DayNumber: "10", TempDay: "−7°", TempNight: "−8°", Condition: "Облачно и слабый снег"},
+		internal.DayWeather{City: "Moscow", Month: "january", DayNumber: "11", TempDay: "−6°", TempNight: "−7°", Condition: "Облачно и слабый снег"},
+		internal.DayWeather{City: "Moscow", Month: "january", DayNumber: "12", TempDay: "−5°", TempNight: "−5°", Condition: "Облачно и слабый снег"},
+		internal.DayWeather{City: "Moscow", Month: "january", DayNumber: "13", TempDay: "−3°", TempNight: "−4°", Condition: "Облачно и слабый снег"},
+		internal.DayWeather{City: "Moscow", Month: "january", DayNumber: "14", TempDay: "−3°", TempNight: "−5°", Condition: "Облачно"},
+		internal.DayWeather{City: "Moscow", Month: "january", DayNumber: "15", TempDay: "−4°", TempNight: "−6°", Condition: "Облачно и слабый снег"},
+		internal.DayWeather{City: "Moscow", Month: "january", DayNumber: "16", TempDay: "−5°", TempNight: "−7°", Condition: "Облачно и слабый снег"},
+		internal.DayWeather{City: "Moscow", Month: "january", DayNumber: "17", TempDay: "−7°", TempNight: "−9°", Condition: "Облачно"},
+		internal.DayWeather{City: "Moscow", Month: "january", DayNumber: "18", TempDay: "−8°", TempNight: "−10°", Condition: "Облачно и слабый снег"},
+		internal.DayWeather{City: "Moscow", Month: "january", DayNumber: "19", TempDay: "−8°", TempNight: "−10°", Condition: "Облачно"},
+		internal.DayWeather{City: "Moscow", Month: "january", DayNumber: "20", TempDay: "−8°", TempNight: "−10°", Condition: "Ясно"},
+		internal.DayWeather{City: "Moscow", Month: "january", DayNumber: "21", TempDay: "−9°", TempNight: "−11°", Condition: "Облачно"},
+		internal.DayWeather{City: "Moscow", Month: "january", DayNumber: "22", TempDay: "−9°", TempNight: "−9°", Condition: "Облачно и слабый снег"},
+		internal.DayWeather{City: "Moscow", Month: "january", DayNumber: "23", TempDay: "−8°", TempNight: "−9°", Condition: "Облачно"},
+		internal.DayWeather{City: "Moscow", Month: "january", DayNumber: "24", TempDay: "−8°", TempNight: "−10°", Condition: "Облачно"},
+		internal.DayWeather{City: "Moscow", Month: "january", DayNumber: "25", TempDay: "−9°", TempNight: "−12°", Condition: "Облачно"},
+		internal.DayWeather{City: "Moscow", Month: "january", DayNumber: "26", TempDay: "−10°", TempNight: "−11°", Condition: "Облачно и слабый снег"},
+		internal.DayWeather{City: "Moscow", Month: "january", DayNumber: "27", TempDay: "−8°", TempNight: "−9°", Condition: "Облачно"},
+		internal.DayWeather{City: "Moscow", Month: "january", DayNumber: "28", TempDay: "−7°", TempNight: "−9°", Condition: "Ясно"},
+		internal.DayWeather{City: "Moscow", Month: "january", DayNumber: "29", TempDay: "−7°", TempNight: "−9°", Condition: "Облачно и слабый снег"},
+		internal.DayWeather{City: "Moscow", Month: "january", DayNumber: "30", TempDay: "−7°", TempNight: "−8°", Condition: "Облачно"},
+		internal.DayWeather{City: "Moscow", Month: "january", DayNumber: "31", TempDay: "−6°", TempNight: "−8°", Condition: "Облачно и слабый снег"},
 	}
 )
 
@@ -55,7 +54,7 @@ func TestWeatherMemCache_MonthRead(t *testing.T) {
 		name    string
 		wmc     *WeatherMemCache
 		args    args
-		wantWr  []tp.DayWeather
+		wantWr  []internal.DayWeather
 		wantErr bool
 	}{
 		{
@@ -111,7 +110,7 @@ func TestWeatherMemCache_monthStore(t *testing.T) {
 	wmc := NewWeatherMemCache()
 	type args struct {
 		path string
-		wr   []tp.DayWeather
+		wr   []internal.DayWeather
 	}
 	tests := []struct {
 		name string

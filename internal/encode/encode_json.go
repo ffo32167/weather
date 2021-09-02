@@ -3,8 +3,7 @@ package encode
 import (
 	"bytes"
 	encjson "encoding/json"
-
-	tp "github.com/ffo32167/weather/internal/types"
+	"github.com/ffo32167/weather/internal"
 
 	"github.com/sirupsen/logrus"
 )
@@ -20,7 +19,7 @@ func newJSON() json {
 }
 
 // Encode упаковывает данные в json формат для ответа
-func (j json) Encode(dataStruct [][]tp.DayWeather, cities []string) (encodedData bytes.Buffer, format string) {
+func (j json) Encode(dataStruct [][]internal.DayWeather, cities []string) (encodedData bytes.Buffer, format string) {
 	data, err := encjson.Marshal(dataStruct)
 	if err != nil {
 		logrus.Error("can't encode", dataStruct)

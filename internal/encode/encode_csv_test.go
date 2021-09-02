@@ -2,15 +2,14 @@ package encode
 
 import (
 	"bytes"
+	"github.com/ffo32167/weather/internal"
 	"reflect"
 	"testing"
-
-	tp "github.com/ffo32167/weather/internal/types"
 )
 
 func Test_csv_Encode(t *testing.T) {
 	type args struct {
-		data   [][]tp.DayWeather
+		data   [][]internal.DayWeather
 		cities []string
 	}
 	tests := []struct {

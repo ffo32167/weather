@@ -1,6 +1,7 @@
 package pageparse
 
 import (
+	"github.com/ffo32167/weather/internal"
 	"io"
 	"strings"
 
@@ -20,9 +21,9 @@ func (y yandex) CreateDataPath(country, city, month, year string) (url string) {
 }
 
 //	Распарсить информацию из данных источника
-func (yandex) SiteParse(source io.Reader, city string, month string, config tp.Config) (data []tp.DayWeather) {
+func (yandex) SiteParse(source io.Reader, city string, month string, config tp.Config) (data []internal.DayWeather) {
 	var (
-		day     tp.DayWeather
+		day     internal.DayWeather
 		doWrite bool
 	)
 	doc, err := goquery.NewDocumentFromReader(source)

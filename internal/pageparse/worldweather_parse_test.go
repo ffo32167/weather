@@ -1,6 +1,7 @@
 package pageparse
 
 import (
+	"github.com/ffo32167/weather/internal"
 	"io"
 	"reflect"
 	"testing"
@@ -48,7 +49,7 @@ func Test_worldWeather_SiteParse(t *testing.T) {
 		name     string
 		w        worldWeather
 		args     args
-		wantData []tp.DayWeather
+		wantData []internal.DayWeather
 	}{
 		{
 			"worldWeather siteParse",

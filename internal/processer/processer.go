@@ -2,6 +2,7 @@ package processer
 
 import (
 	"bytes"
+	"github.com/ffo32167/weather/internal"
 	"io"
 	"net/http"
 	"time"
@@ -24,9 +25,9 @@ func ProcessRequest(params tp.WeatherParams, config *tp.Config, cacher ch.Cacher
 }
 
 // weatherDataGet получает данные путём рассматривания кэша или выбранного сайта
-func weatherDataGet(sp s.SiteParser, params tp.WeatherParams, config *tp.Config, cacher ch.Cacher) (wr [][]tp.DayWeather) {
+func weatherDataGet(sp s.SiteParser, params tp.WeatherParams, config *tp.Config, cacher ch.Cacher) (wr [][]internal.DayWeather) {
 	var (
-		cityWeather []tp.DayWeather
+		cityWeather []internal.DayWeather
 		country     string = "russia"
 	)
 	//Перевести месяцы в нужный вид

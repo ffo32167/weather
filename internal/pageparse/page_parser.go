@@ -1,6 +1,7 @@
 package pageparse
 
 import (
+	"github.com/ffo32167/weather/internal"
 	"io"
 
 	tp "github.com/ffo32167/weather/internal/types"
@@ -9,7 +10,7 @@ import (
 // SiteParser Интерфейс для получения данных с сайтов(worldWeather/yandexWeather)
 type SiteParser interface {
 	CreateDataPath(country, city, month, year string) (address string)
-	SiteParse(source io.Reader, city string, month string, config tp.Config) []tp.DayWeather
+	SiteParse(source io.Reader, city string, month string, config tp.Config) []internal.DayWeather
 }
 
 // ChooseSiteParser Выбирает источник данных
