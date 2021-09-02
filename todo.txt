@@ -1,3 +1,4 @@
 - разделить в Config переменную AppPath на две части: место хранения config.json и место хранения фалов кэша
 - перенести тип Config в cmd/weather/config.go
 - обрабатывать ошибки на defer
+- добавить динамический подсчет года в worldweather.Source
