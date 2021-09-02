@@ -6,11 +6,11 @@ import (
 	"net/http"
 	"time"
 
-	c "weather/configs"
-	e "weather/internal/encode"
-	s "weather/internal/pageparse"
-	ch "weather/internal/storage"
-	w "weather/internal/types"
+	c "github.com/ffo32167/weather/configs"
+	e "github.com/ffo32167/weather/internal/encode"
+	s "github.com/ffo32167/weather/internal/pageparse"
+	ch "github.com/ffo32167/weather/internal/storage"
+	w "github.com/ffo32167/weather/internal/types"
 
 	"github.com/sirupsen/logrus"
 )

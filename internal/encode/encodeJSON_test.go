@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"testing"
 
-	w "weather/internal/types"
+	w "github.com/ffo32167/weather/internal/types"
 )
 
 func Test_json_Encode(t *testing.T) {

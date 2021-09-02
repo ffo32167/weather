@@ -4,11 +4,11 @@ import (
 	"context"
 	"net"
 
-	pb "weather/api"
-	c "weather/configs"
-	p "weather/internal/processer"
-	ch "weather/internal/storage"
-	w "weather/internal/types"
+	pb "github.com/ffo32167/weather/api"
+	c "github.com/ffo32167/weather/configs"
+	p "github.com/ffo32167/weather/internal/processer"
+	ch "github.com/ffo32167/weather/internal/storage"
+	w "github.com/ffo32167/weather/internal/types"
 
 	"github.com/sirupsen/logrus"
 	"google.golang.org/grpc"

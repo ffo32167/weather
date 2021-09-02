@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"io"
 
-	c "weather/configs"
-	w "weather/internal/types"
+	c "github.com/ffo32167/weather/configs"
+	w "github.com/ffo32167/weather/internal/types"
 )
 
 var (

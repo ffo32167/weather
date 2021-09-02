@@ -3,8 +3,8 @@ package pageparse
 import (
 	"io"
 
-	c "weather/configs"
-	w "weather/internal/types"
+	c "github.com/ffo32167/weather/configs"
+	w "github.com/ffo32167/weather/internal/types"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/sirupsen/logrus"

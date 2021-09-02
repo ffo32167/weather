@@ -1,6 +1,6 @@
 package cache
 
-import w "weather/internal/types"
+import w "github.com/ffo32167/weather/internal/types"
 
 // Cacher работает с кэшем: готовит к работе, создает путь к кэшу, читает кэш и сохраняет данные месяца в кэш
 type Cacher interface {

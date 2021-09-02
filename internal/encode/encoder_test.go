@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	w "weather/internal/types"
+	w "github.com/ffo32167/weather/internal/types"
 )
 
 func TestChooseEncoder(t *testing.T) {
