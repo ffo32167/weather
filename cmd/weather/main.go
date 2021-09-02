@@ -1,6 +1,8 @@
 package main
 
 import (
+	"os"
+
 	l "github.com/ffo32167/weather/internal/logger"
 	g "github.com/ffo32167/weather/internal/rpc"
 	ch "github.com/ffo32167/weather/internal/storage"
@@ -14,11 +16,13 @@ const (
 )
 
 func main() {
-	// прочитать конфиг
-	cfg, err := NewConfig()
+	configType := os.Getenv("CONFIG_TYPE")
+	configPath := os.Getenv("CONFIG_PATH")
+	cfg, err := newConfig(configType, configPath)
 	if err != nil {
 		logrus.Fatal(err)
 	}
+
 	// настроить логер
 	l.NewLog(appName, cfg.AppPath, cfg.SourceLinesInLog, cfg.LogLevel)
 

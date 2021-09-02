@@ -11,10 +11,21 @@ import (
 	tp "github.com/ffo32167/weather/internal/types"
 )
 
-// NewConfig загрузить конфигурацию, настроить логи
-func NewConfig() (cfg *tp.Config, err error) {
+func newConfig(configType, configPath string) (*tp.Config, error) {
+	path, _ := filepath.Abs(filepath.Dir(os.Args[0]))
+	switch {
+	case configType == "JSON" && configPath != "":
+		return newConfigJSON(configPath)
+	case configType == "JSON":
+		return newConfigJSON(path)
+	}
+	return nil, fmt.Errorf("can't choose config source")
+}
+
+// NewConfigJSON загрузить конфигурацию из JSON, настроить логи
+func newConfigJSON(path string) (cfg *tp.Config, err error) {
 	cfg = &tp.Config{}
-	cfg.AppPath, _ = filepath.Abs(filepath.Dir(os.Args[0]))
+	cfg.AppPath = path
 	if cfg.AppPath == "" {
 		return nil, errors.New("can't get application path")
 	}
