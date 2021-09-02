@@ -2,15 +2,14 @@ package encode
 
 import (
 	"bytes"
+	"github.com/ffo32167/weather/internal"
 	"reflect"
 	"testing"
-
-	w "github.com/ffo32167/weather/internal/types"
 )
 
 func Test_json_Encode(t *testing.T) {
 	type args struct {
-		dataStruct [][]w.DayWeather
+		dataStruct [][]internal.DayWeather
 		cities     []string
 	}
 	tests := []struct {

@@ -1,12 +1,12 @@
 package pageparse
 
 import (
+	"github.com/ffo32167/weather/internal"
 	"io"
 	"reflect"
 	"testing"
 
-	c "github.com/ffo32167/weather/cmd/weather/configs"
-	w "github.com/ffo32167/weather/internal/types"
+	tp "github.com/ffo32167/weather/internal/types"
 )
 
 func Test_worldWeather_CreateDataPath(t *testing.T) {
@@ -43,13 +43,13 @@ func Test_worldWeather_SiteParse(t *testing.T) {
 		dataSource io.Reader
 		city       string
 		month      string
-		config     c.Config
+		config     tp.Config
 	}
 	tests := []struct {
 		name     string
 		w        worldWeather
 		args     args
-		wantData []w.DayWeather
+		wantData []internal.DayWeather
 	}{
 		{
 			"worldWeather siteParse",

@@ -5,10 +5,9 @@ import (
 	"net"
 
 	pb "github.com/ffo32167/weather/api"
-	c "github.com/ffo32167/weather/cmd/weather/configs"
 	p "github.com/ffo32167/weather/internal/processer"
 	ch "github.com/ffo32167/weather/internal/storage"
-	w "github.com/ffo32167/weather/internal/types"
+	tp "github.com/ffo32167/weather/internal/types"
 
 	"github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
@@ -17,12 +16,12 @@ import (
 // GrpcServer реализует сервер grpc
 type GrpcServer struct {
 	pb.UnimplementedWeatherParserServer
-	config *c.Config
+	config *tp.Config
 	cache  ch.Cacher
 }
 
 // ServerStart запускает сервер GRPC
-func ServerStart(cfg *c.Config, cache ch.Cacher) {
+func ServerStart(cfg *tp.Config, cache ch.Cacher) {
 	lis, err := net.Listen("tcp", cfg.GrpcPort)
 	if err != nil {
 		logrus.WithFields(logrus.Fields{"err": err}).Fatal("can't listen port")
@@ -37,7 +36,7 @@ func ServerStart(cfg *c.Config, cache ch.Cacher) {
 }
 
 // NewGrpcServer создаёт сервер из конфига и кэша
-func NewGrpcServer(cfg *c.Config, cache ch.Cacher) (s *GrpcServer) {
+func NewGrpcServer(cfg *tp.Config, cache ch.Cacher) (s *GrpcServer) {
 	return &GrpcServer{config: cfg, cache: cache}
 }
 
@@ -45,7 +44,7 @@ func NewGrpcServer(cfg *c.Config, cache ch.Cacher) (s *GrpcServer) {
 func (server *GrpcServer) ProcessGRPCRequest(ctx context.Context, params *pb.WeatherParams) (*pb.DayWeather, error) {
 	logrus.WithFields(logrus.Fields{"params": params, "config": server.config}).Debug("grpc params")
 	buffer, format := p.ProcessRequest(
-		w.WeatherParams{
+		tp.WeatherParams{
 			MonthsNumbers: params.MonthsNumbers,
 			Cities:        params.Cities,
 			Site:          params.Site,

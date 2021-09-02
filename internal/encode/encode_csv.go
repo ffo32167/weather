@@ -3,8 +3,7 @@ package encode
 import (
 	"bytes"
 	enccsv "encoding/csv"
-
-	w "github.com/ffo32167/weather/internal/types"
+	"github.com/ffo32167/weather/internal"
 
 	"github.com/sirupsen/logrus"
 )
@@ -20,7 +19,7 @@ func newCSV() csv {
 }
 
 // Encode перекодирует данные из среза структур в CSV-файл лежащий в bytes.Buffer
-func (c csv) Encode(data [][]w.DayWeather, cities []string) (encodedData bytes.Buffer, format string) {
+func (c csv) Encode(data [][]internal.DayWeather, cities []string) (encodedData bytes.Buffer, format string) {
 	logrus.WithFields(logrus.Fields{"cities": cities}).Info("start encoding")
 	// Создаем заголовки для csv
 	cities = append([]string{"days"}, cities...)

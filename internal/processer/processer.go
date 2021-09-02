@@ -2,22 +2,22 @@ package processer
 
 import (
 	"bytes"
+	"github.com/ffo32167/weather/internal"
 	"io"
 	"net/http"
 	"time"
 
-	c "github.com/ffo32167/weather/cmd/weather/configs"
 	e "github.com/ffo32167/weather/internal/encode"
 	s "github.com/ffo32167/weather/internal/pageparse"
 	ch "github.com/ffo32167/weather/internal/storage"
-	w "github.com/ffo32167/weather/internal/types"
+	tp "github.com/ffo32167/weather/internal/types"
 
 	"github.com/sirupsen/logrus"
 )
 
 // ProcessRequest обрабатывает запрос
 // из параметров, конфига и кэша делает конечный результат
-func ProcessRequest(params w.WeatherParams, config *c.Config, cacher ch.Cacher) (bytes.Buffer, string) {
+func ProcessRequest(params tp.WeatherParams, config *tp.Config, cacher ch.Cacher) (bytes.Buffer, string) {
 	siteParser := s.ChooseSiteParser(params.Site, config)
 	data := weatherDataGet(siteParser, params, config, cacher)
 	encoder := e.ChooseEncoder(params.ReplyFormat)
@@ -25,9 +25,9 @@ func ProcessRequest(params w.WeatherParams, config *c.Config, cacher ch.Cacher) 
 }
 
 // weatherDataGet получает данные путём рассматривания кэша или выбранного сайта
-func weatherDataGet(sp s.SiteParser, params w.WeatherParams, config *c.Config, cacher ch.Cacher) (wr [][]w.DayWeather) {
+func weatherDataGet(sp s.SiteParser, params tp.WeatherParams, config *tp.Config, cacher ch.Cacher) (wr [][]internal.DayWeather) {
 	var (
-		cityWeather []w.DayWeather
+		cityWeather []internal.DayWeather
 		country     string = "russia"
 	)
 	//Перевести месяцы в нужный вид

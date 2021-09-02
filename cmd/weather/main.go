@@ -1,7 +1,9 @@
 package main
 
 import (
-	c "github.com/ffo32167/weather/cmd/weather/configs"
+	"fmt"
+	"os"
+
 	l "github.com/ffo32167/weather/internal/logger"
 	g "github.com/ffo32167/weather/internal/rpc"
 	ch "github.com/ffo32167/weather/internal/storage"
@@ -15,11 +17,13 @@ const (
 )
 
 func main() {
-	// прочитать конфиг
-	cfg, err := c.NewConfig()
+	configType := os.Getenv("CONFIG_TYPE")
+	configPath := os.Getenv("CONFIG_PATH")
+	cfg, err := newConfig(configType, configPath)
 	if err != nil {
-		logrus.Fatal(err)
+		logrus.Fatal(fmt.Errorf("error while working with config: %w", err))
 	}
+
 	// настроить логер
 	l.NewLog(appName, cfg.AppPath, cfg.SourceLinesInLog, cfg.LogLevel)
 

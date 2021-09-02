@@ -1,13 +1,15 @@
 package cache
 
-import w "github.com/ffo32167/weather/internal/types"
+import (
+	"github.com/ffo32167/weather/internal"
+)
 
 // Cacher работает с кэшем: готовит к работе, создает путь к кэшу, читает кэш и сохраняет данные месяца в кэш
 type Cacher interface {
 	Load(path string)
 	Path(pathParts ...string) string
-	MonthRead(path string) ([]w.DayWeather, error)
-	MonthWrite(string, []w.DayWeather)
+	MonthRead(path string) ([]internal.DayWeather, error)
+	MonthWrite(string, []internal.DayWeather)
 }
 
 // ChooseCache выбрать кэш

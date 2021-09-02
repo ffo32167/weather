@@ -3,12 +3,11 @@ package cache
 import (
 	"encoding/json"
 	"errors"
+	"github.com/ffo32167/weather/internal"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"sync"
-
-	w "github.com/ffo32167/weather/internal/types"
 
 	"github.com/sirupsen/logrus"
 )
@@ -16,13 +15,13 @@ import (
 // WeatherMemCache это кэш в памяти
 type WeatherMemCache struct {
 	mx    sync.RWMutex
-	cache map[string][]w.DayWeather
+	cache map[string][]internal.DayWeather
 }
 
 // NewWeatherMemCache Инициализирует кэш в памяти
 func NewWeatherMemCache() (wmc *WeatherMemCache) {
 	wmc = &WeatherMemCache{
-		cache: make(map[string][]w.DayWeather),
+		cache: make(map[string][]internal.DayWeather),
 	}
 	return wmc
 }
@@ -66,7 +65,7 @@ func (wmc *WeatherMemCache) Path(pathParts ...string) string {
 }
 
 // MonthRead получает данные месяца из памяти(city, month)
-func (wmc *WeatherMemCache) MonthRead(path string) (wr []w.DayWeather, err error) {
+func (wmc *WeatherMemCache) MonthRead(path string) (wr []internal.DayWeather, err error) {
 	wmc.mx.RLock()
 	defer wmc.mx.RUnlock()
 	wr, ok := wmc.cache[path]
@@ -78,14 +77,14 @@ func (wmc *WeatherMemCache) MonthRead(path string) (wr []w.DayWeather, err error
 }
 
 // MonthWrite сохраняет данные за месяц в кэш и на диск
-func (wmc *WeatherMemCache) MonthWrite(path string, wr []w.DayWeather) {
+func (wmc *WeatherMemCache) MonthWrite(path string, wr []internal.DayWeather) {
 	wmc.monthStore(path, wr)
 	logrus.WithFields(logrus.Fields{"path": path, "DayWeather len:": len(wr)}).Debug()
 	monthWrite(path, wr)
 }
 
 // Сохранить данные месяца в память
-func (wmc *WeatherMemCache) monthStore(path string, wr []w.DayWeather) {
+func (wmc *WeatherMemCache) monthStore(path string, wr []internal.DayWeather) {
 	wmc.mx.Lock()
 	defer wmc.mx.Unlock()
 	logrus.WithFields(logrus.Fields{"path": path, "DayWeather len:": len(wr)}).Debug()
@@ -93,7 +92,7 @@ func (wmc *WeatherMemCache) monthStore(path string, wr []w.DayWeather) {
 }
 
 // Cохранить полученные и обработанные данные по месяцу на диск
-func monthWrite(path string, data []w.DayWeather) {
+func monthWrite(path string, data []internal.DayWeather) {
 	dir := filepath.Dir(path)
 	err := os.MkdirAll(dir, 0)
 	if err != nil {
@@ -115,7 +114,7 @@ func monthWrite(path string, data []w.DayWeather) {
 }
 
 // Извлечь данные по месяцу из кэша на диске
-func cacheOpen(path string) []w.DayWeather {
+func cacheOpen(path string) []internal.DayWeather {
 	file, err := os.Open(path)
 	if err != nil {
 		logrus.WithFields(logrus.Fields{"path": path, "err": err}).Error("can't open cache on path")
@@ -125,7 +124,7 @@ func cacheOpen(path string) []w.DayWeather {
 	if err != nil {
 		logrus.WithFields(logrus.Fields{"path": path, "err": err}).Error("can't read cache on path")
 	}
-	var data []w.DayWeather
+	var data []internal.DayWeather
 	err = json.Unmarshal(buff, &data)
 	if err != nil {
 		logrus.WithFields(logrus.Fields{"path": path, "err": err}).Error("can't unmarshal cache on path")
