@@ -5,12 +5,12 @@ import (
 	"reflect"
 	"testing"
 
-	w "github.com/ffo32167/weather/internal/types"
+	tp "github.com/ffo32167/weather/internal/types"
 )
 
 func Test_csv_Encode(t *testing.T) {
 	type args struct {
-		data   [][]w.DayWeather
+		data   [][]tp.DayWeather
 		cities []string
 	}
 	tests := []struct {

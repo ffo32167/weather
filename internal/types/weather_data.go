@@ -1,6 +1,4 @@
-package weatherdata
-
-import "bytes"
+package types
 
 // DayWeather это данные погоды за день
 type DayWeather struct {
@@ -20,9 +18,4 @@ type WeatherParams struct {
 	Months        []string
 	Year          string
 	ReplyFormat   string
-}
-
-// Encoder кодирует ответ в различные форматы
-type Encoder interface {
-	Encode([][]DayWeather, []string) (bytes.Buffer, string)
 }

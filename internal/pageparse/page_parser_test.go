@@ -4,13 +4,13 @@ import (
 	"reflect"
 	"testing"
 
-	c "github.com/ffo32167/weather/cmd/weather/configs"
+	tp "github.com/ffo32167/weather/internal/types"
 )
 
 func TestChooseSiteParser(t *testing.T) {
 	type args struct {
 		site   string
-		config *c.Config
+		config *tp.Config
 	}
 	tests := []struct {
 		name       string

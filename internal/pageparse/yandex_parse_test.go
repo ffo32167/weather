@@ -5,8 +5,7 @@ import (
 	"reflect"
 	"testing"
 
-	c "github.com/ffo32167/weather/cmd/weather/configs"
-	w "github.com/ffo32167/weather/internal/types"
+	tp "github.com/ffo32167/weather/internal/types"
 )
 
 func Test_yandex_CreateDataPath(t *testing.T) {
@@ -43,13 +42,13 @@ func Test_yandex_SiteParse(t *testing.T) {
 		dataSource io.Reader
 		city       string
 		month      string
-		config     c.Config
+		config     tp.Config
 	}
 	tests := []struct {
 		name     string
 		y        yandex
 		args     args
-		wantData []w.DayWeather
+		wantData []tp.DayWeather
 	}{
 		{
 			"yandex siteParse",

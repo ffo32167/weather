@@ -1,7 +1,6 @@
 package main
 
 import (
-	c "github.com/ffo32167/weather/cmd/weather/configs"
 	l "github.com/ffo32167/weather/internal/logger"
 	g "github.com/ffo32167/weather/internal/rpc"
 	ch "github.com/ffo32167/weather/internal/storage"
@@ -16,7 +15,7 @@ const (
 
 func main() {
 	// прочитать конфиг
-	cfg, err := c.NewConfig()
+	cfg, err := NewConfig()
 	if err != nil {
 		logrus.Fatal(err)
 	}
